@@ -34,4 +34,3 @@ Google 推出 **TensorFlow** 框架, 可以在 CPU/GPU/TPU 上執行 training �
 * **Person detection** : Not yet （標的物 Arduino Nano 33 BLE Sense, ESP32-EYE）
 
 從實驗的結果而言, 辨識的效果還有很大的改善空間, 這就當作下一個探討的題目吧.
-
