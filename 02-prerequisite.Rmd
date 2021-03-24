@@ -2,6 +2,8 @@
 
 ## git 及 github 簡單操作
 
+## 認識 make 及簡單操作 (mbed cli 的操作必備技能之一)
+
 ## 在 Windows 10 下安裝 VMware Workstation Player 及 Ubuntu 18.04
 
 本篇文章說明如何在 Windows 10 上安裝虛擬機器, 執行 Linux - Ubuntu 系統, 以便編譯 TensorFlow Lite Micro 在 STM32 DISCOVERY_F476NG 板子上執行的測試程式
@@ -13,23 +15,26 @@
 
 ### 1. 下載 Ubuntu 18.04 ISO image 檔案 （電腦需要至少 20GB 以上硬碟空間, 預估下載時間： 7 分鐘）
 - https://releases.ubuntu.com/18.04/
-- 選擇 ubuntu-18.04.5-desktop-amd64.iso 下載, 記住儲存目錄
+- 選擇 ubuntu-18.04.5-desktop-amd64.iso 下載, 記住儲存目錄  
+
 <img src="https://github.com/marconi1964/tensorflow/blob/example/tensorflow/lite/micro/examples/screenshots/VmwarePhoto1.PNG?raw=true" alt="screenshot1" style="height: 200px">
 
 ### 2. 下載及安裝 VMWare Workstation Player (預估下載時間： < 1 分鐘 / 操作時間：10 分鐘)
-- 2.1 下載 VMWare Workstation Player 安裝程式檔案 https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html
-<img src="https://github.com/marconi1964/tensorflow/blob/example/tensorflow/lite/micro/examples/screenshots/VmwarePhoto0.PNG?raw=true" alt="screenshot0" style="height: 200px">
+- 2.1 下載 VMWare Workstation Player 安裝程式檔案 https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html  
+
+<img src="https://github.com/marconi1964/tensorflow/blob/example/tensorflow/lite/micro/examples/screenshots/VmwarePhoto0.PNG?raw=true" alt="screenshot0" style="height: 200px">  
+
 - 2.2 執行 VMWare Workstation Player 安裝程式 
   - 安裝完成後, 執行 VMware Workstation Player
-- 2.3 Create a new virtual machine. 點選 'Installer disc image file (iso)', 到儲存 ubuntu-18.04.5-desktop-amd64.iso 的目錄後, 開始安裝
-<img src="https://github.com/marconi1964/tensorflow/blob/example/tensorflow/lite/micro/examples/screenshots/VmwarePhoto2.PNG?raw=true" alt="screenshot2" style="height: 200px">
-<img src="https://github.com/marconi1964/tensorflow/blob/example/tensorflow/lite/micro/examples/screenshots/VmwarePhoto3.PNG?raw=true" alt="screenshot3" style="height: 200px">
-<img src="https://github.com/marconi1964/tensorflow/blob/example/tensorflow/lite/micro/examples/screenshots/VmwarePhoto4.PNG?raw=true" alt="screenshot4" style="height: 200px">
-<img src="https://github.com/marconi1964/tensorflow/blob/example/tensorflow/lite/micro/examples/screenshots/VmwarePhoto5.PNG?raw=true" alt="screenshot5" style="height: 200px">
-<img src="https://github.com/marconi1964/tensorflow/blob/example/tensorflow/lite/micro/examples/screenshots/VmwarePhoto6.PNG?raw=true" alt="screenshot6" style="height: 200px">
-<img src="https://github.com/marconi1964/tensorflow/blob/example/tensorflow/lite/micro/examples/screenshots/VmwarePhoto7.PNG?raw=true" alt="screenshot7" style="height: 200px">
-<img src="https://github.com/marconi1964/tensorflow/blob/example/tensorflow/lite/micro/examples/screenshots/VmwarePhoto8.PNG?raw=true" alt="screenshot8" style="height: 200px">
-<img src="https://github.com/marconi1964/tensorflow/blob/example/tensorflow/lite/micro/examples/screenshots/VmwarePhoto9.PNG?raw=true" alt="screenshot9" style="height: 200px">
+- 2.3 Create a new virtual machine. 點選 'Installer disc image file (iso)', 到儲存 ubuntu-18.04.5-desktop-amd64.iso 的目錄後, 開始安裝  
+<img src="https://github.com/marconi1964/tensorflow/blob/example/tensorflow/lite/micro/examples/screenshots/VmwarePhoto2.PNG?raw=true" alt="screenshot2" style="height: 200px">  
+<img src="https://github.com/marconi1964/tensorflow/blob/example/tensorflow/lite/micro/examples/screenshots/VmwarePhoto3.PNG?raw=true" alt="screenshot3" style="height: 200px">  
+<img src="https://github.com/marconi1964/tensorflow/blob/example/tensorflow/lite/micro/examples/screenshots/VmwarePhoto4.PNG?raw=true" alt="screenshot4" style="height: 200px">  
+<img src="https://github.com/marconi1964/tensorflow/blob/example/tensorflow/lite/micro/examples/screenshots/VmwarePhoto5.PNG?raw=true" alt="screenshot5" style="height: 200px">   
+<img src="https://github.com/marconi1964/tensorflow/blob/example/tensorflow/lite/micro/examples/screenshots/VmwarePhoto6.PNG?raw=true" alt="screenshot6" style="height: 200px">  
+<img src="https://github.com/marconi1964/tensorflow/blob/example/tensorflow/lite/micro/examples/screenshots/VmwarePhoto7.PNG?raw=true" alt="screenshot7" style="height: 200px">  
+<img src="https://github.com/marconi1964/tensorflow/blob/example/tensorflow/lite/micro/examples/screenshots/VmwarePhoto8.PNG?raw=true" alt="screenshot8" style="height: 200px">  
+<img src="https://github.com/marconi1964/tensorflow/blob/example/tensorflow/lite/micro/examples/screenshots/VmwarePhoto9.PNG?raw=true" alt="screenshot9" style="height: 200px">  
 
 
 *** 以上 2 個動作在上課前完成 ***
