@@ -70,7 +70,8 @@ Pete Warden 及相關資料
 
 
 關於 TinyML 的另一位作者, 已經離開 Google 的 Daniel Situnayake   
-`r referencescounter<-referencescounter+1; referencescounter`. [Daniel Situnayake's blog](https://situnayake.com)
+`r referencescounter<-referencescounter+1; referencescounter`. [Daniel Situnayake's blog](https://situnayake.com)  
+`r referencescounter<-referencescounter+1; referencescounter`. [Edge Impluse](https://docs.edgeimpulse.com/docs/getting-started?fbclid=IwAR10Gtry8NInWcRQfpV1SXSxefwdhUyHbxEJOUe8JsiJGQpR7ecYeTcjW5Y)
 
 一個厲害德國人的 stupid projects, 在不同的 embedded controller 做 TFLM 的 benchmark  
 `r referencescounter<-referencescounter+1; referencescounter`. [Stupid projects - Machine Learning on Embedded (Part 1)](https://www.stupid-projects.com/machine-learning-on-embedded-part-1/)  
