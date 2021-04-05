@@ -6,10 +6,10 @@
 
 本文介紹可以運作 hello_world 示範程式的有以下的前兩種 (網路上有更新, 可以支援更多設備):  
 
-* [Arduino Nano 33 BLE Sense](#arduino_nano33_hello_world)  
-* [ST Microelectronics STM32F746NG Discovery kit](#disco_f746ng_hello_world)  
+* [Arduino Nano 33 BLE Sense](#arduino-nano33-hello-world)  
+* [ST Microelectronics STM32F746NG Discovery kit](#disco-f746ng-hello-world)  
 * SparkFun Edge ([TinyML TensorFLow Lite 機器學習中文版](https://www.books.com.tw/products/0010865580) 書上有介紹, 但手上沒有這塊開發板, 就不介紹了)   
-
+* 2021/4/6 新增實驗 [ESP32-CAM](#esp32-cam-hello-world)
 
 <a id="disco_f746ng_hello_world"></a>  
 
@@ -204,7 +204,7 @@ x_value: 1.4361557*2^0, y_value: 1.0166438*2^0
 
 <a id="arduino_nano33_hello_world"></a>  
 
-## 在 Arduino Nano 33 BLE 上實現 hello_world {#disco-nano33-hello-world}
+## 在 Arduino Nano 33 BLE 上實現 hello_world {#arduino-nano33-hello-world}
 
 在 §\@ref(arduinoide) Arduino IDE 安裝後, 將 Arduino Nano 33 BLE 接上電腦的 USB, 進入 Arduino IDE 的 Tools - Boards 及 Port 確定已經安裝完成, 再到 File - Examples 找到 Arduino_TensorFlowLite 下會有 4 個範例  
 
@@ -220,3 +220,65 @@ x_value: 1.4361557*2^0, y_value: 1.0166438*2^0
 * Tool - Serial Plotter : 看到 Nano 33 回饋的預測 X、Y 值展開的圖形
 
 同時, Nano 33 的燈號也會隨著辨識結果, 逐漸變亮到熄滅再變亮
+
+## 在 ESP32-CAM 上實現 hello_world {#esp32-cam-hello-world}
+
+這裡不說明 Arduino 的作法(作法更 Arduino Nano 33 大同小異), 僅就 esp-idf 方法做說明  
+
+在 §\@ref(esp-idf) esp-idf 安裝且測試完 ESP32 的 hello world 後, 現在測試的是 TensorFlow Lite Micro 的 hello_world. 類似 STM32 DISCO_F746NG 的 Makefile 的作法
+
+在 idf.py build 這步驟出現錯誤  
+
+```
+$ git clone https://github.com/tensorflow/tensorflow.git
+$ cd tensorflow
+$ make -f tensorflow/lite/micro/tools/make/Makefile TARGET=esp generate_hello_world_esp_project
+$ cd tensorflow/lite/micro/tools/make/gen/esp_xtensa-esp32/prj/hello_world/esp-idf
+$ idf.py build
+
+-- Configuring done
+CMake Error at /home/rafael/esp/esp-idf/tools/cmake/project.cmake:461 (target_link_libraries):
+Error evaluating generator expression:
+
+$<IN_LIST:-DTF_LITE_STATIC_MEMORY,$<TARGET_PROPERTY:__idf_tfmicro,COMPILE_OPTIONS>>
+Expression did not evaluate to a known generator expression
+Call Stack (most recent call first):
+CMakeLists.txt:3 (project)
+
+CMake Error in main/CMakeLists.txt:
+Error evaluating generator expression:
+
+$<IN_LIST:-DTF_LITE_STATIC_MEMORY,$<TARGET_PROPERTY:__idf_tfmicro,COMPILE_OPTIONS>>
+Expression did not evaluate to a known generator expression
+
+-- Generating done
+-- Build files have been written to: /home/rafael/tensorflow/tensorflow/lite/micro/tools/make/gen/esp_xtensa-esp32/prj/hello_world/esp-idf/build
+cmake failed with exit code 1
+```
+
+Google 後發現 [ESP32 Hello World project crashing in the target](https://github.com/tensorflow/tensorflow/issues/42165#issuecomment-751882110) 說明 cmake 的 compile option 需要 3.11 版本以上, 查了我的 cmake 版本是 3.10.2, 所以需要升級  
+
+```
+$ cmake --version
+cmake version 3.10.2
+```
+
+[cmake 升級作法](https://askubuntu.com/questions/829310/how-to-upgrade-cmake-in-ubuntu)
+
+```
+# 從 https://cmake.org/download/ 下載 tar file, 到下載 tar file 的目錄下執行:
+
+$ cd $CMAKE_DOWNLOAD_PATH
+$ ./configure
+$ make
+$ sudo make install
+```
+
+再執行 idf, 可以結束從開發板傳回來的 X 跟 Y 的值  
+
+```
+$ idf.py build
+$ idf.py -p PORT flash monitor 
+```
+
+提醒 : 執行 monitor 程式時, 如果要離開, 需要按 ‘Ctrl’ + ‘]’ 的組合鍵.

@@ -1,9 +1,10 @@
 # Prerequisite 準備工作
 
-本章介紹的準備工作, 分成幾段:  
+本章介紹的準備工作, 以不同的開發板區分成幾段:  
 
 * §\@ref(git), §\@ref(make) 及 §\@ref(vmware) 是準備給 STM32 DISCO F746NG (或其它 STM 及使用 ARM MCU 系列) demo board  
-* 如果是 Arduino Nano 33 BLE Sense, 則直接到 §\@ref(arduinoide) 準備 Arduino IDE, 相對而言, 簡單許多.  
+* 如果是 Arduino Nano 33 BLE Sense, 則直接到 §\@ref(arduinoide) 準備 Arduino IDE, 相對而言, 簡單許多. (2021/4/5 新增: 用 Makefile 來產生 Arduino 的 examples 程式)  
+* §\@ref(esp-idf) 說明 ESP32 的 idf 開發環境安裝
 
 ## git 及 github 簡單操作 {#git}  
 
@@ -206,3 +207,67 @@ $ ls tensorflow/lite/micro/tools/make/gen/arduino_x86_64_default/prj/tensorflow_
 * person_detection  
 
 選擇我們想要的範例 hello_world 執行即可.
+
+## ESP32-CAM 安裝 esp-idf 開發環境 {#esp-idf}
+
+### ESP32-CAM 硬體簡介  
+ESP32-CAM 可以使用 Arduino IDE, 也可以使用 ESP32 官方的開發環境 esp-idf. 以下介紹 esp-idf 開發環境的設定為主:
+
+本文使用的 ESP32-CAM 使用了 2 個硬體版本,     
+* 需要外接 USB-serial 轉板 : 燒錄 ESP32-CAM 程式式, 需要將 GPIO 0 接到 GND, 詳見 [ESP32-CAM Randomnerd-tutorials](https://randomnerdtutorials.com/esp32-cam-video-streaming-face-recognition-arduino-ide/)  
+* [自帶 CH340 的 ESP32-CAM](https://youyouyou.pixnet.net/blog/post/120556711-帶ch340的esp32cam簡易測試) : 這種整合型的硬體穩定性較佳. 燒錄時, 切換下載模式步驟 : 按住Flash, 再按RST, 放開RST, 放開Flash  
+
+這 2 個硬體版本的軟體設定都是選擇 AI thinker ESP32-CAM (不管是用 Arduino IDE 或是 esp-idf)  
+
+
+### esp-idf 安裝環境設定  
+基本上, 照著 [Espressif ESP-IDF Programming Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html) 上的詳細說明, 大致上不會遇到問題. 我用的是 command line 的 tool chain, 
+
+* Toolchain to compile code for ESP32
+* Build tools - CMake and Ninja to build a full Application for ESP32
+* ESP-IDF that essentially contains API (software libraries and source code) for ESP32 and scripts to operate the Toolchain
+
+而不是 Eclipse 或 VS Code 的 IDE
+
+* Eclipse Plugin (installation link)
+* VS Code Extension (onboarding)
+
+照著網頁上的 10 個步驟逐步完成, 算是簡單  
+
+* Step 1. Install prerequisites for Windows, Linux, or macOS
+* Step 2. Get ESP-IDF
+* Step 3. Set up the tools
+* Step 4. Set up the environment variables  
+
+可以先執行範例程式, 確定沒有問題後, 再進行 TensorFlow Lite Micro 的範例, 才不會糾結在從何處 debug 著手的問題
+
+* Step 5. Start a Project  
+* Step 6. Connect Your Device  
+* Step 7. Configure  (注意 *1*)  
+* Step 8. Build the Project    
+* Step 9. Flash onto the Device  
+* Step 10. Monitor (注意 *2*, *3*, *4*)  
+
+
+注意 *1* : Step 7 的 config 無須特別設定, 看看後就可以 (Q)uit 
+
+我曾經卡在 step 9, VMware 下的 Ubuntu 18.04 讓我無法連接上 USB Serial port, 看得到, 但讀寫有問題,Google 了好幾回, 能找到的 [Stackoverflow 最佳解](https://stackoverflow.com/questions/53356417/access-to-dev-ttyusb0-denied-for-dialout-group-member-in-kubuntu-18-04)  還是無法解決已經將 user 設定成 dialout 群組卻還無法讀寫 USB serial port 的問題, 只能用暴力的 chmod 作法.
+
+```
+$ ls -l /dev/ttyUSB*
+crw-rw---- 1 root dialout 188,0 Apr  5 16:41 /dev/ttyUSB0
+
+$ sudo chmod 666 /dev/ttyUSB0
+$ ls -l /dev/ttyUSB*
+crw-rw-rw- 1 root dialout 188,0 Apr  5 16:41 /dev/ttyUSB0
+```
+
+注意 *2* : Step 10 的 monitor 可以跟 step 9 的指令結合如下:  
+
+```
+$ idf.py -p PORT flash monitor      # 這裡的 PORT 用 /dev/ttyUSB0 取代
+```
+
+注意 *3* : 記得, 燒錄完成後, 雖然軟體會自動下個 soft reset, 可是 ESP32-CAM 都沒有動作, 還是需要按板子上的 RST 鍵才能執行新下載的程式. 
+
+注意 *4* : 執行 monitor 程式時, 如果要離開, 需要按 ‘Ctrl’ + ‘]’ 的組合鍵.

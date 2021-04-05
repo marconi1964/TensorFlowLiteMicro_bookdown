@@ -1,0 +1,21 @@
+# Person_detection 範例程式 {#chap-person-detection}
+
+ESP32-CAM
+
+Error at building person_detection  
+[int8 問題](https://github.com/tensorflow/tensorflow/pull/47063)
+* 下載 patch
+* make with int8
+* make without int8 
+
+執行後 error[esp-32 Camera probe failed with error 0x20004](https://github.com/espressif/esp32-camera/issues/102)  
+
+Camera init failed
+
+InitCamera failed
+
+Image capture failed
+
+
+
+set to AI thinker ESP32-CAM
