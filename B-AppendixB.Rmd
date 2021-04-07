@@ -1,1 +1,1 @@
-# Appendix B - Hello_world 原始碼分析 {#appendixb}
+# Appendix B {#appendixb}
