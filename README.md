@@ -1,1 +1,1 @@
-This is a minimal example of a book based on R Markdown and **bookdown** (https://github.com/rstudio/bookdown). Please see the page "Get Started" at https://bookdown.org/home/about/ for how to compile this example.
+這是基於 R Markdown 跟 **bookdown** (https://github.com/rstudio/bookdown) 來紀錄 TensorFlow Lite Micro 的一些實驗心得, 歡迎 PR
