@@ -182,6 +182,10 @@ $ sudo dpkg -i st-stlink-udev-rules-1.0.2-2-linux-all.deb
 
 選擇我們想要的範例 hello_world 執行即可.
 
+**偶爾, 在燒錄過程, 或是程式問題, 可能造成筆電無法偵測到 Arduino Nano 33, 找不到 COM port**, 這時候, 可以參考
+[Arduino driver 問題](https://forum.arduino.cc/index.php?topic=679763.0) 的 #7, 快速按 2 下 Arduino Nano 33 上面的 RESET 按鈕, 可以讓 Nano 33 回到燒錄模式, 就可以看到 Arduino Nano 33, 找到 COM port.  
+
+**也許, 程式燒錄後, COM port 位址會變, (像我就遇到燒錄前的 COM 5, 到燒錄後的 COM 6)**, 這時候, 需要去 Arduino IDE 的 Tool - Port 選取對應到的 COM port.
 
 ## Arduino IDE 安裝 - 方法二: 從 Makefile 安裝 TensorFlowLite
 參照 [TinyML：TensorFlow Lite機器學習](https://www.books.com.tw/products/0010865580?fbclid=IwAR1xgb-0LStRrHXajKT-u3uP982d0p8PQaDpNfhxHAzuCbATi6VOjYcwo2k) 附錄 A 使用及產生 Arduino Library Zip. 採取類似 DISCO_F746NG 使用 Makefile 的作法產生 Arduino IDE 所需要的 library zip 檔案 tensorflow_lite.zip

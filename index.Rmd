@@ -1,6 +1,6 @@
 --- 
 title: "TensorFlow Lite for Microcontroller (TFLM)"
-author: "Marconi Jiang"
+author: "marconi964@yahoo.com or marconi.jiang@gmail.com"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
