@@ -4,7 +4,8 @@
 
 * §\@ref(git), §\@ref(make) 及 §\@ref(vmware) 是準備給 STM32 DISCO F746NG (或其它 STM 及使用 ARM MCU 系列) demo board  
 * 如果是 Arduino Nano 33 BLE Sense, 則直接到 §\@ref(arduinoide) 準備 Arduino IDE, 相對而言, 簡單許多. (2021/4/5 新增: 用 Makefile 來產生 Arduino 的 examples 程式)  
-* §\@ref(esp-idf) 說明 ESP32 的 idf 開發環境安裝
+* §\@ref(esp-arduino) 說明 ESP32 的 Arduino 開發環境安裝  
+* §\@ref(esp-idf) 說明 ESP32 的 idf 開發環境安裝  
 
 ## git 及 github 簡單操作 {#git}  
 
@@ -212,10 +213,16 @@ $ ls tensorflow/lite/micro/tools/make/gen/arduino_x86_64_default/prj/tensorflow_
 
 選擇我們想要的範例 hello_world 執行即可.
 
+
+## ESP32-CAM 安裝 Arduino 開發環境 {#esp-arduino}
+
+與 Arduino Nano 33 不同的地方, ESP32-CAM 在選擇 Tools - Boards 之前, 需要先到 File - Preserence -AdditionalBoards Manager URLs: 加入 "https://dl.espressif.com/dl/package_esp32_index.json" 後, 再到 Tools - Boards 去選擇 ESP32-CAM.  
+
+
 ## ESP32-CAM 安裝 esp-idf 開發環境 {#esp-idf}
 
 ### ESP32-CAM 硬體簡介  
-ESP32-CAM 可以使用 Arduino IDE, 也可以使用 ESP32 官方的開發環境 esp-idf. 以下介紹 esp-idf 開發環境的設定為主:
+ESP32-CAM 可以使用 Arduino IDE, 也可以使用 ESP32 官方的開發環境 esp-idf. 以下介紹 esp-idf 開發環境的設定:
 
 本文使用的 ESP32-CAM 使用了 2 個硬體版本,     
 * 需要外接 USB-serial 轉板 : 燒錄 ESP32-CAM 程式式, 需要將 GPIO 0 接到 GND, 詳見 [ESP32-CAM Randomnerd-tutorials](https://randomnerdtutorials.com/esp32-cam-video-streaming-face-recognition-arduino-ide/)  
