@@ -1,7 +1,7 @@
 # Micro_speech 範例程式-喚醒詞偵測：建構 app {#chap-micro-speech-inference}
 
 
-本章節對應到 [TinyML TensorFLow Lite 機器學習中文版](https://www.books.com.tw/products/0010865580) 的第七章, 佩服作者在機器學習功力的深厚, 在這一章裡, 也介紹了機器學習 app 的模型框架, 以及語音樣本資料 - 聲譜 (spectrogram) - 的簡介. 我會再後續補充於 Appendix §\@ref(appendixc) 音頻聲譜的說明與模型分析.
+本章節對應到 [TinyML TensorFLow Lite 機器學習中文版](https://www.books.com.tw/products/0010865580) 的第七章, 佩服作者在機器學習功力的深厚, 在這一章裡, 也介紹了機器學習 app 的模型框架, 以及語音樣本資料 - 聲譜 (spectrogram) - 的簡介. 我會再後續補充於 §附錄 \@ref(appendixd) 音頻聲譜的說明與模型分析.
 
 <div align="center">
 再說一次:   

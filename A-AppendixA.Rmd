@@ -1,2 +1,19 @@
 # (APPENDIX) 附錄 {-}
-# Appendix A - Hello_world 原始碼分析 {#appendixa}
+# Appendix A - 開發板運算能力分析 {#appendixa}
+
+|分類|開發板|CPU|RAM|Flash ROM|其它記憶體|IO週邊|照片|form factor|
+|:---|:---|:---|:---|:---|:---|:---|:---|:---|
+|MCU|TFL-Micro|-|-|TFLM|-|-|-|-|
+|Arduino|Nano 33 BLE|nRF52840 ARM M4 64MHz with FPU|256KB SRAM|1MB Flash|||![from Arduino](https://store-cdn.arduino.cc/usa/catalog/product/cache/1/image/500x375/f8876a31b63532bbba4e781c30024a0a/a/b/abx00030_iso.jpg)|45x18 mm2|
+|STM32|DISCO_F746NG|ARM M7 216MHz BGA216|340KB RAM + 16MB SDRAM|1MB Flash + 16MB Quad-SPI Flash|||![from STM](https://www.st.com/bin/ecommerce/api/image.PF261641.en.feature-description-include-personalized-no-cpn-large.jpg)||
+||NUCLEO_F103RB|ARM M3 72MHz LQFP64|20KB SRAM|128KB Flash|||![from STM](https://os.mbed.com/media/cache/platforms/Nucleo64_main_logo_1024_wQdiMXV.jpg.250x250_q85.jpg)||
+|ESP|ESP32-CAM|Xensia 160MHz |520KB + 4MB PSRAM|4MB SPI Flash|||![from AI Thinker](http://www.ai-thinker.com/Uploads/file/20190604/20190604153510_44650.jpg)|27x40.5x2.5mm3|
+|MPU|TF-Lite|-|-|TF Lite|-|-|-|-|
+|ARM|A 系列||||||||
+|NVidia|Jetson||||||||
+|intel |Movidius||||||||
+|MPU|TensorFlow|-|-|TensorFlow|-|-|-|-|
+|Nvidia |A100||||||||
+|Intel |Xeon-SP||||||||
+
+各類 CPU 介紹(待完成)

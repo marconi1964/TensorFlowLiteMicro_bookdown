@@ -29,7 +29,7 @@ Hello world 示範程式跟一般的 AI 機器學習/深度學習的應用一樣
 到選單 "Runtime" 選擇 "Run all", 整個執行過程需時 5 分鐘之內. (同學們可以試試看不同的 runtime type 所需的時間各是多少)
 
 ### 訓練過程中, 學習如何修正及改善模型, 並將模型轉換成 TFLM 接受的格式
-這訓練模型 train hello worldmode.ipynb 令我佩服的是, 利用實例來說明機器學習模式設計可能的問題, 模型太小只能有線性的表現, 而且用圖形來顯示此結果, 進一步擴充模型(增加一層神經網路)後得到更佳結果, 值得讀者細細研讀本書[TinyML TensorFLow Lite 機器學習中文版](https://www.books.com.tw/products/0010865580)的第 4 章, 列於 § Appendix \@ref(appendixa) 當作進一步研究的主題.
+這訓練模型 train hello worldmode.ipynb 令我佩服的是, 利用實例來說明機器學習模式設計可能的問題, 模型太小只能有線性的表現, 而且用圖形來顯示此結果, 進一步擴充模型(增加一層神經網路)後得到更佳結果, 值得讀者細細研讀本書[TinyML TensorFLow Lite 機器學習中文版](https://www.books.com.tw/products/0010865580)的第 4 章, 列於 §附錄 \@ref(appendixc) 當作進一步研究的主題.
 
 最終訓練結果會顯示在最後一行, 帶出 2 個參數,  
 

@@ -195,7 +195,7 @@ $ sudo dpkg -i st-stlink-udev-rules-1.0.2-2-linux-all.deb
 $ git clone --depth 1 https://github.com/tensorflow/tensorflow.git
 $ cd tensorflow
 # 執行 test_arduino.sh 來產生 .zip 檔
-$ tensorflow/lite/micro/ci_build/test-arduino.sh
+$ tensorflow/lite/micro/tools/ci_build/test_arduino.sh
 # 可以在以下目錄找到 tensorflow_lite.zip
 $ ls tensorflow/lite/micro/tools/make/gen/arduino_x86_64_default/prj/tensorflow_lite.zip
 ```

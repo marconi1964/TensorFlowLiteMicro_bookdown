@@ -1,1 +1,1 @@
-# Appendix C - 音頻聲譜的說明與模型分析 {#appendixc}
+# Appendix C - 機器學習模型之加強及改善可能 {#appendixc}

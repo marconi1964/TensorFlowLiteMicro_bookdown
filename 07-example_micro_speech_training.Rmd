@@ -1,6 +1,6 @@
 # Micro_speech 範例程式-喚醒詞偵測：訓練模型 {#chap-micro-speech-training}
 
-本章節對應到 [TinyML TensorFLow Lite 機器學習中文版](https://www.books.com.tw/products/0010865580) 的第八章, 在這一章裡, 也介紹了 TensorBoard 來監看訓練過程, 可以進一步了解可視化機器學習. 本章最後一小部分, 也再說明語音特徵生產的程序, 這部分, 我有機會再於 Appendix §\@ref(appendixc) 音頻聲譜的說明與模型分析說明. 
+本章節對應到 [TinyML TensorFLow Lite 機器學習中文版](https://www.books.com.tw/products/0010865580) 的第八章, 在這一章裡, 也介紹了 TensorBoard 來監看訓練過程, 可以進一步了解可視化機器學習. 本章最後一小部分, 也再說明語音特徵生產的程序, 這部分, 我有機會再於 §附錄 \@ref(appendixd) 音頻聲譜的說明與模型分析說明. 
 
 類似 hello_world 的範例程式的模型訓練是於 Google colab 上執行, 此 micro_speech 範例也是在 colab 上執行另一個模型訓練程式, 我們先不做任何的修改, 於下一段的 [colab 訓練客製化](#colab-micro-speech-customization)可以修改原始辨識 'yes' 與 'no' 的模型, 改為辨識其它喚醒詞.   
 

@@ -1,6 +1,6 @@
 # Introducing TFLM (TensorFlow Lite for Microcontroller) {#chap-intro}
 
-Google 推出 **TensorFlow** 框架, 可以在 CPU/GPU/TPU 上執行 training 的任務, 考慮手機上的侷限的運算能力不如 PC, 接著推出 [Tensorflow Lite](https://www.tensorflow.org/lite/tutorials) 的機器學習框架於手機, 至於 IoT 裝置上用的是 ARM M 系列及其它 embedded MCU (microcontrollers) 的算力以及侷限的 ROM/RAM 空間, 也針對這類型的開發板陸續推出支援機器學習 inference 的 [TensorFlow Lite for Microcontrollers](https://www.tensorflow.org/lite/microcontrollers) (TFLM) 框架, 也出書推廣
+Google 推出 **TensorFlow** 框架, 可以在 CPU/GPU/TPU 上執行 training 的任務, 考慮手機上的侷限的運算能力不如 PC, 接著推出 [Tensorflow Lite](https://www.tensorflow.org/lite/tutorials) 的機器學習框架於手機, 至於 IoT 裝置上用的是 ARM M 系列及其它 embedded MCU (microcontrollers) 的算力以及侷限的 ROM/RAM 空間 (參考附錄 A §\@ref(appendixa)的開發板運算能力比較), 也針對這類型的開發板陸續推出支援機器學習 inference 的 [TensorFlow Lite for Microcontrollers](https://www.tensorflow.org/lite/microcontrollers) (TFLM) 框架, 也出書推廣
 [TinyML：TensorFlow Lite 機器學習](https://www.books.com.tw/products/0010865580?fbclid=IwAR1xgb-0LStRrHXajKT-u3uP982d0p8PQaDpNfhxHAzuCbATi6VOjYcwo2k). 
 
 截至本文上架（`r Sys.Date()`）為止, TFLM 支援的硬體已經有下列的開發板 (書中只有介紹前三種): 
