@@ -34,6 +34,8 @@ $ git push           # 更新到 github remote 內容
 $ git stash drop     # 暫存內容已無必要, 可以扔了
 ```
 
+可以參考[網路文章對於 git 及 github 的淺顯說明](https://andrewintw.github.io/introduction-to-version-control-with-git/?fbclid=IwAR2h_G__eGRPrtXtamKMydzyZPFiKbHprj1iBqiMaGqwYVUVx0Y7ybQPWIo)
+
 ## 認識 make 及簡單操作 (mbed cli 的操作必備技能之一) {#make}
 見參考文件 [跟 Seisman 一起写Makefile](https://seisman.github.io/how-to-write-makefile/)
 
@@ -142,8 +144,11 @@ $ git clone -b example --depth 1 https://github.com/marconi1964/tensorflow.git
 
 ### 7. 下載 STM32-F 系列工具箱
 - 7.1 更新 STM32-F 板子的 ST-LINK firmware 到最新版 https://my.st.com/content/my_st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-programmers/stsw-link007.html
-  - Linux Ubuntu 版本
+ST 網站需要用 email 來註冊才能下載, 選擇版本後, 下載並解壓縮到你設定的目錄下
+
 ```
+# 假設你設定解壓縮到 ~/Downloads 目錄下
+$ cd ~/Downloads
 $ cd stsw-link007/AllPlatforms/StlinkRulesFilesForLinux
 $ sudo apt update
 $ sudo dpkg -i st-stlink-udev-rules-1.0.2-2-linux-all.deb

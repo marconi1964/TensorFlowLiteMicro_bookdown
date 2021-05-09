@@ -10,6 +10,7 @@
 * [ST Microelectronics STM32F746NG Discovery kit](#disco-f746ng-hello-world)  
 * SparkFun Edge ([TinyML TensorFLow Lite 機器學習中文版](https://www.books.com.tw/products/0010865580) 書上有介紹, 但手上沒有這塊開發板, 就不介紹了)   
 * 2021/4/6 新增實驗 [ESP32-CAM](#esp32-cam-hello-world)
+* 2021/4/27 新增實驗 [MaixPy Amigo (RISC-V CPU)](#riscv-amigo-hello-world)
 
 <a id="disco_f746ng_hello_world"></a>  
 
@@ -282,3 +283,154 @@ $ idf.py -p PORT flash monitor
 ```
 
 提醒 : 執行 monitor 程式時, 如果要離開, 需要按 ‘Ctrl’ + ‘]’ 的組合鍵.
+
+
+## 在 MaixPy Amigo (RISC-V CPU) 上實現 hello_world {#riscv-amigo-hello-world}   
+
+### 建立 MaixPy tool chains
+
+<span style="color:red">⚠️注意 截止目前為止, 還有問題, 請不要輕易嘗試, 歡迎提出改善建議</span>
+
+照著 [Build Maixpy from source code](https://github.com/sipeed/MaixPy/blob/master/build.md) 步驟執行
+
+#### Get source code
+
+```
+# Clone by https link
+$ git clone https://github.com/sipeed/maixpy.git
+# Then get submodules
+$ cd maixpy
+$ git submodule update --init
+```
+#### Install dependencies  
+
+```
+$ sudo apt update
+$ sudo apt install python3 python3-pip build-essential cmake
+$ cd maixpy     # if you ever change directory 
+$ pip3 install -r requirements.txt
+```
+#### Download toolchain
+
+Download the latest toolchain from [here](https://github.com/kendryte/kendryte-gnu-toolchain/releases) (macOS and linux), or [kendryte-toolchain-ubuntu-amd64-8.2.0-20190409.tar.xz(CDN)](http://dl.cdn.sipeed.com/kendryte-toolchain-ubuntu-amd64-8.2.0-20190409.tar.xz) (for linux)
+
+And extract to /opt/kendryte-toolchain/
+
+```
+$ cd ~
+$ wget http://dl.cdn.sipeed.com/kendryte-toolchain-ubuntu-amd64-8.2.0-20190409.tar.xz
+$ sudo tar -Jxvf kendryte-toolchain-ubuntu-amd64-8.2.0-20190409.tar.xz -C /opt
+$ ls /opt/kendryte-toolchain/bin
+```
+
+#### Configure project
+
+##### 切換到 projects/hello_world 目錄或 projects/maixpy_k210, 必須遵循它的目錄結構才可以順利執行, 參照 Reference 文章說明.
+
+```
+$ cd maixpy
+$ cd projects/hello_world
+# 或
+$ cd maixpy
+$ cd projects/maixpy_k210
+
+# 我的作法是複製 hello_world 到新的目錄 amigo_tflm
+$ cd maixpy
+$ cp -r projects/hello_world/ projects/amigo_tflm/
+$ cd projects/amigo_tflm
+```  
+  
+##### Configure project
+Usually, just use the default configuration.
+
+If you want to customsize project modules, execute command:
+
+```
+python3 project.py menuconfig
+```
+
+接下來, 在 build 之前, 我們先下載 tensorflow lite micro 程式
+
+### 下載 TensorFlow lite micro, 執行 make 來產生 source code
+#### 類似 DISCO_F746NG 的作法下載及執行 make 
+
+```
+$ git clone https://github.com/tensorflow/tensorflow.git
+$ cd tensorflow
+# 修改 tensorflow 命名 riscv32_mcu 與 riscv_mcu / mcu_riscv 不一致處
+$ mv tensorflow/lite/micro/tools/make/targets/mcu_riscv_makefile.inc \
+     tensorflow/lite/micro/tools/make/targets/riscv32_mcu_makefile.inc
+$ mv tensorflow/lite/micro/riscv_mcu/ tensorflow/lite/micro/riscv32_mcu/
+$ make -f tensorflow/lite/micro/tools/make/Makefile TARGET=riscv32_mcu generate_hello_world_make_project
+# source code 位於 tensorflow/micro/tools/make/gen/riscv32_mcu_riscv32_mcu_micro/prj/hello_world/make/
+$ cd tensorflow/micro/tools/make/gen/riscv32_mcu_riscv32_mcu_micro/prj/hello_world/make/
+$ ls
+LICENSE  Makefile README_MAKE.md  tensorflow  third_party
+# 可以先看 Makefile 的內容 
+# SRCS := \
+# tensorflow/lite/micro/simple_memory_allocator.cc .......
+# 需要將這部分的 SRCS 內容複製到 MaixPy 的 maixpy/projects/amigo_tflm/main/CMakeList.txt 的 Add source files 下
+# 再度看了全部檔案, 發現並沒有 hello_world 的程式列表 😄 還有一段路要走
+```
+
+### 將 tensforflow 的 source code 檔案整理成 MaixiPy tool chain 的檔案架構
+目前的探索需要手動整理許多檔案, 而且目前為止還有錯誤, 還不確定哪裡需要修正
+
+#### 複製 Tensorflow 原始碼到 MaixPy 原始檔目錄
+
+```
+$ cd ~/tensorflow
+$ cp -r tensorflow/micro/tools/make/gen/riscv32_mcu_riscv32_mcu_micro/prj/hello_world/make/ \
+        ~/maixpy/projects/amigo_tflm
+$ cd ~/maixpy/projects/amigo_tflm
+``` 
+
+#### 修改 MaixPy build 的相關設定
+
+1. 修改 CMakeList.txt 的 C/C++ 原始程式碼檔案設定  
+  * 修改 ~/maixpy/projects/amigo_tflm/main/CMakeLists.txt 檔案內容
+  
+```
+# 將目前目錄 . 設成 include 目錄
+############## Add include ###################
+list(APPEND ADD_INCLUDE "."
+   )
+# list(APPEND ADD_PRIVATE_INCLUDE "")
+###############################################
+
+# 將上一個動作的結果產生的 ensorflow/micro/tools/make/gen/riscv32_mcu_riscv32_mcu_micro/prj/hello_world/make/Makefile 內容
+# SRCS := \
+# tensorflow/lite/micro/simple_memory_allocator.cc ....... 
+# 的所有 .cc 檔案名稱複製貼上, 用雙引號隔開
+############## Add source files ###################
+list(APPEND ADD_SRCS
+"tensorflow/lite/micro/simple_memory_allocator.c"
+.....
+   )
+###############################################
+
+```
+
+2. 修改 的 C/C++ 編譯設定  
+  * 修改 ~/maixpy/projects/amigo_tflm/compile/compile_flags.cmake
+
+```
+# 原先設定
+set(CMAKE_CXX_FLAGS -mcmodel=medany
+...
+                    -std=gnu11
+# 將 -std=gnu11 改成 -std=c++11
+set(CMAKE_CXX_FLAGS -mcmodel=medany
+...
+                    -std=c++11
+
+```
+3. 出現 error  
+
+
+References:  
+
+* [Sipeed MaixPy 官網](https://maixpy.sipeed.com/dev/en/advanced/code_struct.html)
+* [Sipeed MaixPy 文件說明](https://wiki.sipeed.com/soft/maixpy/zh/)
+* [Build Maixpy from source code](https://github.com/sipeed/MaixPy/blob/master/build.md)
+* [Simple and configurable C/C++ project/SDK template - CMake](https://github.com/Neutree/c_cpp_project_framework)  

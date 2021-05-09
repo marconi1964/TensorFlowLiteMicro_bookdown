@@ -28,7 +28,7 @@ Google 推出 **TensorFlow** 框架, 可以在 CPU/GPU/TPU 上執行 training �
 * **Person detection** - 讀取 camera 的影像資料來偵測是否有人出現在精通前
 
 而我在本文上架時, 已經實驗過的板子及範例有,   
-* **Hello World** :  STM32 NUCLEO-F03RB, DISCO-F746NG, Arduino Nano 33 BLE Sense, ESP32-CAM (2021/4/5 新增). (期待中: 標的物 Sipeed Maix Amigo on RISC-V RV64GC)  
+* **Hello World** :  STM32 NUCLEO-F03RB, DISCO-F746NG, Arduino Nano 33 BLE Sense, ESP32-CAM (2021/4/5 新增), Sipeed Maix Amigo on RISC-V RV64GC(2021/4/27 新增, 但有問題還在 debug 中, 見 §\@ref(riscv-amigo-hello-world) )   
 * **Micro speech** : DISCO-F746NG, Arduino Nano 33 BLE Sense  
 * **Magic wand** : Arduino Nano 33 BLE Sense  
 * **Person detection** : ESP32-CAM (2021/4/6 新增) （期待中: 標的物 Arduino Nano 33 BLE Sense）  
